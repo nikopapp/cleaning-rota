@@ -1,0 +1,27 @@
+{
+  "name": "cleaning-rota",
+  "version": "1.0.0",
+  "description": "This is a cleaning rota generator for any houseshare.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikopapp/cleaning-rota.git"
+  },
+  "keywords": [
+    "cleaning",
+    "rota"
+  ],
+  "author": "Nikolaos Pappas",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/nikopapp/cleaning-rota/issues"
+  },
+  "homepage": "https://github.com/nikopapp/cleaning-rota#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
