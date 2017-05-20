@@ -25,7 +25,7 @@ color:white;
 
 li img{
 
-  max-width:100px;
+  width:6em;
   flex-grow:1;
   border-radius: 50px;
   border-style: solid;
