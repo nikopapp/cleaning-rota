@@ -84,7 +84,8 @@ console.log(row);
     app.post("/api/cleanlog", function(req,res) {
       console.log(req.body);
       const stmt = db.prepare("INSERT INTO CLEANLOG VALUES (?,?,?,?)");
-      stmt.run(null,""+Date.now(),req.body.cleanType,req.body.id);
+      console.log(null,""+Date.now(),req.body.cleanTypeId,req.body.id);
+      stmt.run(null,""+Date.now(),req.body.cleanTypeId,req.body.id);
       stmt.finalize();
       loadDB();
       res.json(cleanTypes);

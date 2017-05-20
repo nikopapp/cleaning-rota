@@ -1,4 +1,5 @@
 body{
+  overflow: hidden;
   background: linear-gradient(left,grey,green);
 }
 
@@ -14,8 +15,9 @@ li img{
 }
 #resList{
   list-style: none;
-  width: 100vw;
+  width: 45vw;
   text-align: center;
+  display: inline-block;
 }
 .badge{
   background-color: cadetblue;
@@ -32,6 +34,14 @@ li img{
 }
 .hidden{
   display: none;
+}
+#cleanlogDiv{
+  height: 95vh;
+  overflow-y: scroll;
+  width: 45vw;
+  display: inline-block;
+  background-color: #333333;
+  color: white;
 }
 #modalCleaned{
   opacity: 0.93;

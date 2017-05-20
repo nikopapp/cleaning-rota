@@ -14,9 +14,24 @@ function init() {
   fetch("api/cleanlog").then((response)=>{
     return response.json();
   }).then((response) =>{
+    appendCleanLog(response);
     appendBadges(response);
   });
 
+}
+function appendCleanLog(cleanlog){
+  let cleanlogDiv = document.createElement("div");
+  cleanlogDiv.id="cleanlogDiv";
+  let body = document.getElementById("top");
+  let ul = document.createElement("ul");
+  for(item of cleanlog){
+    console.log(item);
+    let li = document.createElement("li");
+    li.innerHTML = (new Date(parseInt(item.weeknum))).toString()  +" "+ item.residentId +" " + item.cleanTypeId;
+    ul.appendChild(li);
+  }
+  cleanlogDiv.appendChild(ul);
+  body.appendChild(cleanlogDiv);
 }
 function buildPage(response) {
   const body = document.getElementById("top");
@@ -37,12 +52,11 @@ function buildPage(response) {
   body.appendChild(ul);
 }
 function appendBadges(cleanlog){
-
   let cleanMax = 0;
   const cleanHisto = new Array(6);
   const ul = document.getElementById('resList').children;
   for(item of cleanlog){
-      cleanHisto[item.residentId] = cleanHisto[item.residentId]+1||1;
+      cleanHisto[item.residentId] = (cleanHisto[item.residentId]+1)||1;
       if(cleanMax<=cleanHisto[item.residentId]){
         cleanMax = cleanHisto[item.residentId];
       }
