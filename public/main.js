@@ -1,37 +1,50 @@
-let cleanlog;
 let currentCleanerId = -1;
+let residents = [];
+let cleanTypes= [];
 function init() {
-  fetch("api/residents").then((response) => {
+  const residentsPromise = fetch("api/residents").then((response) => {
     return response.json();
-  }).then((response) => {
-    buildPage(response);
   });
-  fetch("api/cleantypes").then((response)=>{
+  const cleanTypesPromise = fetch("api/cleantypes").then((response)=>{
     return response.json();
-  }).then((response) =>{
-    createMenu(response);
   });
-  fetch("api/cleanlog").then((response)=>{
+  const cleanlogPromise = fetch("api/cleanlog").then((response)=>{
     return response.json();
-  }).then((response) =>{
-    appendCleanLog(response);
-    appendBadges(response);
   });
+  Promise.all([residentsPromise,cleanTypesPromise, cleanlogPromise]).then((values) => {
 
+    cleanTypes = values[1].slice();
+    createMenu(cleanTypes);
+
+    residents = values[0].slice();
+    buildPage(residents);
+
+    appendCleanLog(values[2].slice());
+    appendBadges(values[2].slice());
+
+  });
 }
 function appendCleanLog(cleanlog){
-  let cleanlogDiv = document.createElement("div");
+  let cleanlogDiv = document.getElementById("cleanlogDiv") || document.createElement("div");
   cleanlogDiv.id="cleanlogDiv";
   let body = document.getElementById("top");
-  let ul = document.createElement("ul");
+  let ul = document.getElementById("cleanlogUl")||document.createElement("ul");
+  ul.id = "cleanlogUl";
+  ul.innerHTML="";
+  let i = 0;
   for(item of cleanlog){
     console.log(item);
-    let li = document.createElement("li");
-    li.innerHTML = (new Date(parseInt(item.weeknum))).toString()  +" "+ item.residentId +" " + item.cleanTypeId;
+    let li = document.getElementById(item.weeknum+"") || document.createElement("li");
+    li.id = item.weeknum+"";
+    li.className="li"+item.residentId;
+    // console.log((new Date(parseInt(item.weeknum))).toString()  +" "+ residents[item.residentId] +" " + cleanTypes[item.cleanTypeId]);
+    li.innerHTML = (new Date(parseInt(item.weeknum))).toString().substring(0,25)  +"<br/> "+ residents[item.residentId-1].name +" " + cleanTypes[item.cleanTypeId-1].name;
     ul.appendChild(li);
   }
   cleanlogDiv.appendChild(ul);
-  body.appendChild(cleanlogDiv);
+  if(!document.getElementById("cleanlogDiv")){
+    body.appendChild(cleanlogDiv);
+  }
 }
 function buildPage(response) {
   const body = document.getElementById("top");
@@ -63,7 +76,7 @@ function appendBadges(cleanlog){
   }
   for( li of ul){
     li.children.length=0;
-    const span = document.createElement("span");
+    const span = document.getElementById("badge"+li.children[0].id) || document.createElement("span");
     span.innerHTML = cleanHisto[li.children[0].id]||0;
     span.className="badge";
     span.id = "badge"+li.children[0].id;
@@ -120,6 +133,9 @@ function sendCleanedSignal(id,cleanTypes){
     }
   };
   fetch("/api/cleanlog",fetchParams).then((response) =>{
+    return response.json();
+  }).then(response => {
+    appendCleanLog(response);
     appendBadges(response);
   });
 }

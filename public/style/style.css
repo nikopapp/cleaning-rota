@@ -1,6 +1,12 @@
+@font-face {
+    font-family: Multicolore;
+    src: url("./Multicolore.otf") format("opentype");
+}
 body{
-
-background: linear-gradient(-90deg, #fff,#edefda,#bdd4a1,#ead497,#de5b36);
+font-family: "Multicolore";
+background: linear-gradient(-90deg, #fff,#edefda,#edefda,#fffc9c,#fffc9c,#7f2926,#272423);
+color:white;
+/*background: linear-gradient(-90deg, #fff,#edefda,#bdd4a1,#ead497,#de5b36);*/
 }
 /* possible background-image with hell fire*/
 #background-image{
@@ -25,15 +31,31 @@ li img{
   border-style: solid;
   border-color: black;
   border-width: 1px;
-
+  transition: all ease 1s;
 }
+.li1{
+  background-color: #a52d2d;
+}
+.li2{
+  background-color: #83da5d;
+}
+.li3{
+  background-color: #e6e679;
+}
+.li4{
+  background-color: #276db1;
+}
+.li5{
+  background-color: #a432b3;
+}
+
 #resList{
   list-style: none;
   width: 45vw;
   text-align: left;
   display: inline-block;
   position: relative;
-  top: -50px;
+  top: -100px;
 }
 .badge{
   background-color: cadetblue;
@@ -52,7 +74,8 @@ li img{
   display: none;
 }
 #cleanlogDiv{
-  box-shadow: 1px 1px 2px 3px grey;
+  border: 1px solid white;
+  border-radius: 3px;
   height: 95vh;
   overflow-y: scroll;
   width: 30vw;
@@ -61,6 +84,16 @@ li img{
   color: white;
   position: relative;
   left: 20%;
+}
+#cleanlogUl{
+  list-style: none;
+}
+#cleanlogUl li{
+    margin: 0.5em;
+    text-shadow: 1px 1px black;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 4px;
 }
 #modalCleaned{
   opacity: 0.93;
@@ -72,7 +105,7 @@ li img{
   top:0;
   text-align: center;
   font-family: Helvetica;
-
+  z-index: 2;
 }
 #modTitle{
   font-size: 40px;

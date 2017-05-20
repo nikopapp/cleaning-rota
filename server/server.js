@@ -27,7 +27,7 @@ console.log(row);
        residents.push({id:row.id,name: row.name,avatarUrl: row.avatarUrl});
      });
 
-     db.each("SELECT * FROM CLEANTYPE", function(err, row) {
+     db.each("SELECT * FROM CLEANTYPE ORDER BY id", function(err, row) {
        console.log(row);
        cleanTypes.push({id:row.id,name: row.name,avatarUrl: row.avatarUrl});
      });
@@ -83,12 +83,18 @@ console.log(row);
     });
     app.post("/api/cleanlog", function(req,res) {
       console.log(req.body);
-      const stmt = db.prepare("INSERT INTO CLEANLOG VALUES (?,?,?,?)");
       console.log(null,""+Date.now(),req.body.cleanTypeId,req.body.id);
+      cleanlog.unshift({
+        id:null,
+        weeknum:Date.now(),
+        cleanTypeId:req.body.cleanTypeId,
+        residentId:req.body.id
+      })
+      res.json(cleanlog);
+      const stmt = db.prepare("INSERT INTO CLEANLOG VALUES (?,?,?,?)");
       stmt.run(null,""+Date.now(),req.body.cleanTypeId,req.body.id);
       stmt.finalize();
       loadDB();
-      res.json(cleanTypes);
       // console.log(req);
     });
 
