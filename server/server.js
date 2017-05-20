@@ -12,18 +12,30 @@ module.exports = function(port, middleware, callback) {
    //------------------ descriptions
    const residents = [];
    const cleanlog = [];
+   const cleanTypes = [];
    // db Intstantiation
    // dbCreate.startup(db);
    //  db.serialize(function(){
      loadDB();
     //  });
    function loadDB(){
+     residents.length=0;
+     cleanTypes.length=0;
+     cleanlog.length=0;
      db.each("SELECT * FROM RESIDENT ORDER BY id", function(err, row) {
-       residents.push({id:row.id,name: row.name});
+console.log(row);
+       residents.push({id:row.id,name: row.name,avatarUrl: row.avatarUrl});
+     });
+
+     db.each("SELECT * FROM CLEANTYPE", function(err, row) {
+       console.log(row);
+       cleanTypes.push({id:row.id,name: row.name,avatarUrl: row.avatarUrl});
      });
      db.each("SELECT * FROM CLEANLOG ORDER BY weeknum DESC", function(err, row) {
-       cleanlog.push({id:row.id,weeknum: row.weeknum, residentId:row.residentId});
+console.log(row);
+       cleanlog.push({id:row.id,weeknum: row.weeknum, cleanTypeId:row.cleanTypeId, residentId:row.residentId});
      });
+
    }
 
   //  --------------------------------------------------------------------------
@@ -58,6 +70,7 @@ module.exports = function(port, middleware, callback) {
 // ----------------------------------------------------------------------
 
     var status = {"notFound": 404, "ok": 200, "created": 201};
+    app.use(express.static("public"));
 
     app.get("/api/residents",function(req,res){
       res.json(residents);
@@ -65,7 +78,18 @@ module.exports = function(port, middleware, callback) {
     app.get("/api/cleanlog",function(req,res){
       res.json(cleanlog);
     });
-
+    app.get("/api/cleantypes", function(req,res){
+      res.json(cleanTypes);
+    });
+    app.post("/api/cleanlog", function(req,res) {
+      console.log(req.body);
+      const stmt = db.prepare("INSERT INTO CLEANLOG VALUES (?,?,?,?)");
+      stmt.run(null,""+Date.now(),req.body.cleanType,req.body.id);
+      stmt.finalize();
+      loadDB();
+      res.json(cleanTypes);
+      // console.log(req);
+    });
 
 function handleError(err,code,res){
   if (err){
@@ -74,16 +98,6 @@ function handleError(err,code,res){
 }
 
 
-    function getTodo(id,list) {
-        return _.find(list, function(todo) {
-            return todo.id === id;
-        });
-    }
-    function getComplete() {
-        return todos.filter(function(todo) {
-            return todo.isComplete;
-        });
-    }
 
     var server = app.listen(port, callback);
 
