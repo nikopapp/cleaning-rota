@@ -1,6 +1,20 @@
 body{
-  overflow: hidden;
-  background: linear-gradient(left,grey,green);
+
+background: linear-gradient(-90deg, #fff,#edefda,#bdd4a1,#ead497,#de5b36);
+}
+/* possible background-image with hell fire*/
+#background-image{
+  opacity: 0.3;
+  position: fixed;
+  top:0;
+  left:-50%;
+  width: 100vw;
+  height: 100vh;
+  transform: rotateZ(90deg);
+  background-repeat: no-repeat;
+  background-image: url("/fire.jpg");
+  background-size: cover;
+  mix-blend-mode: add;
 }
 
 li img{
@@ -16,8 +30,10 @@ li img{
 #resList{
   list-style: none;
   width: 45vw;
-  text-align: center;
+  text-align: left;
   display: inline-block;
+  position: relative;
+  top: -50px;
 }
 .badge{
   background-color: cadetblue;
@@ -36,12 +52,15 @@ li img{
   display: none;
 }
 #cleanlogDiv{
+  box-shadow: 1px 1px 2px 3px grey;
   height: 95vh;
   overflow-y: scroll;
-  width: 45vw;
+  width: 30vw;
   display: inline-block;
   background-color: #333333;
   color: white;
+  position: relative;
+  left: 20%;
 }
 #modalCleaned{
   opacity: 0.93;

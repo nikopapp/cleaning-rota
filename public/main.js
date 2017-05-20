@@ -67,8 +67,8 @@ function appendBadges(cleanlog){
     span.innerHTML = cleanHisto[li.children[0].id]||0;
     span.className="badge";
     span.id = "badge"+li.children[0].id;
+    li.style.transform = "translate("+(35*cleanHisto[li.children[0].id]/cleanMax||0)+"vw,0vh)";
     li.appendChild(span);
-    li.style.transform = "translate("+100*cleanHisto[li.children[0].id]||0+",0)";
   }
 }
 
