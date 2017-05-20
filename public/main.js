@@ -51,7 +51,7 @@ function appendBadges(cleanlog){
     li.children.length=0;
     const span = document.createElement("span");
     span.innerHTML = cleanHisto[li.children[0].id]||0;
-    span.className="bagde";
+    span.className="badge";
     span.id = "badge"+li.children[0].id;
     li.appendChild(span);
     li.style.transform = "translate("+100*cleanHisto[li.children[0].id]||0+",0)";

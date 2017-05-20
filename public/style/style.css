@@ -1,7 +1,9 @@
 body{
   background: linear-gradient(left,grey,green);
 }
+
 li img{
+
   max-width:100px;
   flex-grow:1;
   border-radius: 50px;
@@ -13,11 +15,20 @@ li img{
 #resList{
   list-style: none;
   width: 100vw;
+  text-align: center;
 }
 .badge{
   background-color: cadetblue;
-  border-radius: 100%;
+  border-radius: 50%;
+  display: inline-block;
   color:white;
+  line-height: 2em;
+  text-align: center;
+  position: relative;
+  height: 2em;
+  width: 2em;
+  left:-10%;
+  top:-200%;
 }
 .hidden{
   display: none;
