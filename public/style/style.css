@@ -3,6 +3,7 @@
     src: url("./Multicolore.otf") format("opentype");
 }
 body{
+  background-repeat: no-repeat;
 font-family: "Multicolore";
 background: linear-gradient(-90deg, #fff,#edefda,#edefda,#fffc9c,#fffc9c,#7f2926,#272423);
 color:white;
@@ -25,7 +26,7 @@ color:white;
 
 li img{
 
-  width:6em;
+  width:3em;
   flex-grow:1;
   border-radius: 50px;
   border-style: solid;
@@ -118,9 +119,20 @@ li img{
 #modalCleaned li{
   font-size: 1.5em;
   margin: 1em auto;
-  line-height: 4em;
+  line-height: 2em;
   background-color: rgb(168,184,202);
 }
 #modalCleaned li:hover{
   opacity: 0.6;
+}
+@media screen and (min-width: 500px){
+    li img {
+      width: 6em;
+    }
+
+    #modalCleaned li{
+      font-size: 1.5em;
+      line-height: 4em;
+    }
+
 }
