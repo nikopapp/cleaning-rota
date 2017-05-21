@@ -11,7 +11,7 @@ const statusCode = {"notFound": 404, "ok": 200, "created": 201};
 module.exports = function(port, middleware, callback) {
    //------------------ descriptions
    const residents = [];
-   const cleanlog = [];
+   let cleanlog = [];
    const cleanTypes = [];
    // db Intstantiation
    // dbCreate.startup(db);
@@ -93,6 +93,18 @@ console.log(row);
       res.json(cleanlog);
       const stmt = db.prepare("INSERT INTO CLEANLOG VALUES (?,?,?,?)");
       stmt.run(null,""+Date.now(),req.body.cleanTypeId,req.body.id);
+      stmt.finalize();
+      loadDB();
+      // console.log(req);
+    });
+    app.delete("/api/cleanlog/:id", function(req,res) {
+      console.log(req.params.id);
+      cleanlog=cleanlog.filter((item) => {
+        return item.weeknum !== req.params.id;
+      });
+      res.json(cleanlog);
+      const stmt = db.prepare("DELETE FROM CLEANLOG WHERE weeknum=?;");
+      stmt.run(req.params.id);
       stmt.finalize();
       loadDB();
       // console.log(req);

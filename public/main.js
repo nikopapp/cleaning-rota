@@ -35,6 +35,9 @@ function appendCleanLog(cleanlog){
   for(item of cleanlog){
     console.log(item);
     let li = document.getElementById(item.weeknum+"") || document.createElement("li");
+    li.ondblclick = function(event) {
+      sendDeleteSignal(event.target.id);
+    }
     li.id = item.weeknum+"";
     li.className="li"+item.cleanTypeId;
     // console.log((new Date(parseInt(item.weeknum))).toString()  +" "+ residents[item.residentId] +" " + cleanTypes[item.cleanTypeId]);
@@ -123,6 +126,21 @@ function openMenu(event){
 }
 function closeMenu(){
   document.getElementById("modalCleaned").className = "hidden";
+}
+function sendDeleteSignal(id){
+  const fetchParams = {
+    method: "DELETE",
+    headers:{
+      "Content-Type": "application/json"
+    }
+  };
+  fetch("/api/cleanlog/"+id,fetchParams).then((response) =>{
+    return response.json();
+  }).then(response => {
+    appendCleanLog(response);
+    appendBadges(response);
+  });
+
 }
 function sendCleanedSignal(id,cleanTypes){
   const fetchParams = {
