@@ -5,7 +5,7 @@
 body{
   background-repeat: no-repeat;
 font-family: "Multicolore";
-background: linear-gradient(-90deg, rgb(66, 21, 71),#3e2b2b,#272423);
+background: linear-gradient(-90deg, rgb(66, 21, 71),#2b243b,#272423);
 color:white;
 /*background: linear-gradient(-90deg, #fff,#edefda,#bdd4a1,#ead497,#de5b36);*/
 }
