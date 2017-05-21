@@ -36,7 +36,7 @@ function appendCleanLog(cleanlog){
     console.log(item);
     let li = document.getElementById(item.weeknum+"") || document.createElement("li");
     li.id = item.weeknum+"";
-    li.className="li"+item.residentId;
+    li.className="li"+item.cleanTypeId;
     // console.log((new Date(parseInt(item.weeknum))).toString()  +" "+ residents[item.residentId] +" " + cleanTypes[item.cleanTypeId]);
     li.innerHTML = (new Date(parseInt(item.weeknum))).toString().substring(0,25)  +"<br/> "+ residents[item.residentId-1].name +" " + cleanTypes[item.cleanTypeId-1].name;
     ul.appendChild(li);
@@ -104,7 +104,7 @@ function createMenu(response){
     const menuItem = document.createElement("li");
     menuItem.innerHTML = item.name;
     menuItem.id=item.id;
-    menuItem.className = "menuItem";
+    menuItem.className = "menuItem li"+item.id;
     menuItem.addEventListener("click",(event) =>{
       console.log(event.target);
       sendCleanedSignal(currentCleanerId,event.target.id);

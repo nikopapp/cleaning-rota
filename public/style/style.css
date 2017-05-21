@@ -5,23 +5,26 @@
 body{
   background-repeat: no-repeat;
 font-family: "Multicolore";
-background: linear-gradient(-90deg, #fff,#edefda,#edefda,#fffc9c,#fffc9c,#7f2926,#272423);
+background: linear-gradient(-90deg, rgb(66, 21, 71),#3e2b2b,#272423);
 color:white;
 /*background: linear-gradient(-90deg, #fff,#edefda,#bdd4a1,#ead497,#de5b36);*/
 }
 /* possible background-image with hell fire*/
 #background-image{
-  opacity: 0.3;
+  opacity: 0.9;
   position: fixed;
-  top:0;
-  left:-50%;
+  top:70px;
+  left: 0;
   width: 100vw;
   height: 100vh;
-  transform: rotateZ(90deg);
   background-repeat: no-repeat;
   background-image: url("/fire.jpg");
   background-size: cover;
-  mix-blend-mode: add;
+  mix-blend-mode: luminosity;
+  -webkit-mix-blend-mode: luminosity;
+  -moz-mix-blend-mode: luminosity;
+  -o-mix-blend-mode: luminosity;
+  -ms-mix-blend-mode: luminosity;
 }
 
 li img{
@@ -38,10 +41,10 @@ li img{
   background-color: #a52d2d;
 }
 .li2{
-  background-color: #83da5d;
+  background-color: #2f7b0e;
 }
 .li3{
-  background-color: #e6e679;
+  background-color: #e8c853;
 }
 .li4{
   background-color: #276db1;
@@ -56,10 +59,9 @@ li img{
   text-align: left;
   display: inline-block;
   position: relative;
-  top: -100px;
 }
 .badge{
-  background-color: cadetblue;
+  background-color: rgb(66, 21, 71);
   border-radius: 50%;
   display: inline-block;
   color:white;
@@ -79,14 +81,13 @@ li img{
   border-radius: 3px;
   height: 95vh;
   overflow-y: scroll;
-  width: 30vw;
+  width: 90vw;
   display: inline-block;
-  background-color: #333333;
+  background-color: rgb(66, 21, 71);
   color: white;
   position: relative;
-  left: 20%;
 }
-#cleanlogUl{
+ul{
   list-style: none;
 }
 #cleanlogUl li{
@@ -98,7 +99,7 @@ li img{
 }
 #modalCleaned{
   opacity: 0.93;
-  background-color: rgb(78,234,78);
+  background-color: rgb(66, 21, 71);
   position: fixed;
   width: 100%;
   height: 100%;
@@ -120,7 +121,6 @@ li img{
   font-size: 1.5em;
   margin: 1em auto;
   line-height: 2em;
-  background-color: rgb(168,184,202);
 }
 #modalCleaned li:hover{
   opacity: 0.6;
@@ -134,5 +134,11 @@ li img{
       font-size: 1.5em;
       line-height: 4em;
     }
-
+    #cleanlogDiv{
+      width: 30vw;
+      left: 20%;
+    }
+    #resList{
+      top: -10vh;
+    }
 }

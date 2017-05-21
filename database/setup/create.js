@@ -75,8 +75,8 @@ const residents = [
   {id:5,name:"Simone",avatarUrl:"https://scontent-lhr3-1.xx.fbcdn.net/v/t1.0-1/c132.36.456.456/s100x100/215818_103867606367022_5805078_n.jpg?oh=47f309074fb2d1ed1e6ddec9968a0162&oe=59778FC0"}
 ]
 const cleanTypes = [
-  {id:1,name:"Kitchen",avatarUrl:""},
-  {id:2,name:"Main bathroom",avatarUrl:""},
-  {id:3,name:"Auxiliary bathroom",avatarUrl:""},
-  {id:4,name:"Livingroom and hallways",avatarUrl:""}
+  {id:1,name:"La cocina",avatarUrl:""},
+  {id:2,name:"El baño de abajo",avatarUrl:""},
+  {id:3,name:"El baño de arriba",avatarUrl:""},
+  {id:4,name:"El salon y los pasillos",avatarUrl:""}
 ]
